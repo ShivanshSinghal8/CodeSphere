@@ -1,0 +1,89 @@
+export default function RecruiterCandidatesPage() {
+  const candidates = [
+    {
+      id: 1,
+      name: "Riya Mehta",
+      college: "IIT Delhi",
+      rating: 1980,
+      achievements: ["Expert @ Codeforces", "4★ @ CodeChef"],
+      github: "https://github.com/riya",
+      linkedin: "https://linkedin.com/in/riya",
+    },
+    {
+      id: 2,
+      name: "Kabir Singh",
+      college: "NIT Trichy",
+      rating: 1915,
+      achievements: ["Guardian @ LeetCode", "1900+ CF"],
+      github: "https://github.com/kabir",
+      linkedin: "https://linkedin.com/in/kabir",
+    },
+  ]
+
+  return (
+    <main className="p-6 space-y-6">
+      <header className="flex items-center justify-between">
+        <h1 className="text-xl font-semibold">Candidates</h1>
+        <div className="flex gap-2">
+          <input
+            className="rounded-md border border-[color:var(--cs-border)] bg-[color:var(--cs-bg-soft)] px-3 py-2 text-sm"
+            placeholder="Search by name, skill, college"
+          />
+          <select className="rounded-md border border-[color:var(--cs-border)] bg-[color:var(--cs-bg-soft)] px-3 py-2 text-sm">
+            <option>Sort by Rating</option>
+            <option>Sort by Achievements</option>
+          </select>
+        </div>
+      </header>
+
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {candidates.map((c) => (
+          <article
+            key={c.id}
+            className="rounded-lg border border-[color:var(--cs-border)] bg-[color:var(--cs-bg-soft)] p-4"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h2 className="font-medium">{c.name}</h2>
+                <p className="text-sm text-[color:var(--cs-muted)]">{c.college}</p>
+              </div>
+              <div className="text-right">
+                <div className="text-lg font-semibold">{c.rating}</div>
+                <div className="text-xs text-[color:var(--cs-muted)]">CodeSphere Rating</div>
+              </div>
+            </div>
+            <ul className="mt-3 list-disc pl-5 text-sm text-[color:var(--cs-muted)]">
+              {c.achievements.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a
+                className="rounded-md border border-[color:var(--cs-border)] px-3 py-1.5 text-sm hover:bg-white/5"
+                href={c.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+              <a
+                className="rounded-md border border-[color:var(--cs-border)] px-3 py-1.5 text-sm hover:bg-white/5"
+                href={c.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="rounded-md border border-[color:var(--cs-border)] px-3 py-1.5 text-sm hover:bg-white/5"
+                href={`/student/my-progress?user=${c.id}`}
+              >
+                View Portfolio
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+  )
+}
